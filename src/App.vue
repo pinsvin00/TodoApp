@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>
-        TodoAppaz
+        Todo
         </h1>
     <TodoApp/>
   </div>
