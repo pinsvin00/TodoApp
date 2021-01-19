@@ -6,6 +6,7 @@
         <div class="right-float" @click = "closeWindow">&#10006;</div>
       </div>
       <input type="datetime-local" v-model = "date">
+      <input type="text" placeholder="Opis wydarzenia" v-model="descp">
       <button @click = addTask>Zatwierdź</button>
     </div>
   </div>
@@ -16,6 +17,7 @@ export default{
   data(){
     return{
       date: "",
+      descp: "",
     }
   },
   methods:{
@@ -25,7 +27,7 @@ export default{
     addTask(){
       if(this.date ===  undefined || this.date === null)
         return
-      this.$emit('added', this.date)
+      this.$emit('added', this)
     }
   }
 }
@@ -37,8 +39,8 @@ export default{
   border: solid 1px black;
   position: absolute;
   float: left;
-  width: 30%;
-  height: 10%;
+  width: 40%;
+  height: 20%;
 }
 .innerModal{
   display:flex;
@@ -46,6 +48,11 @@ export default{
   justify-content: center;
   align-items: center;
 }
+
+.innerModal > input{
+  margin: 5px;
+}
+
 .stripe{
   background-color: green;
   font-size: 18px;

@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class = "main">
+  <div class="main">
     <TodoModalDate
         v-show="dateInput"
         @close="close_modal"
@@ -31,8 +31,6 @@ export default {
     TodoItem,
     TodoModalDate
   },
-
-
   data(){
     return{
       input: "",
@@ -59,23 +57,28 @@ export default {
       alert("Hello world!")
     },
     date_modal(){
+      if(this.input === ""){
+        alert("Wprowadź nazwę wydarzenia.")
+        return
+      }
       this.dateInput = true
     },
     close_modal(){
       this.dateInput = false
     },
-    add_activity(date){
+    add_activity(sender){
       let last_id;
       if(this.items.length === 0){
         last_id = 0;
       } else last_id = this.items[this.items.length-1].id;
 
-      this.items.push({title: this.input, godz:date, id: last_id+1, dropped:false});
+      this.items.push({title: this.input, godz:sender.date, id: last_id+1, description:sender.descp ,dropped:false});
       this.input = "";
       this.dateInput = false
     },
     remove_item(item){
-      const index = this.items.findIndex(el => el.id === item.id)
+      console.log(item)
+      const index = this.items.findIndex(el => el.id === item)
       this.items.splice(index, 1)
     },
     drop_item(item){
@@ -99,13 +102,13 @@ export default {
 
 <style>
 .finished{
-  font-family: "Bahnschrift";
-  font-size: 24px;
+  font-family: "Consolas";
+  font-size: 36px;
   color: green;
 }
 .not_finished{
-  font-size: 24px;
-  font-family: "Bahnschrift";
+  font-size: 36px;
+  font-family: "Consolas";
 }
 .main{
   display: flex;
